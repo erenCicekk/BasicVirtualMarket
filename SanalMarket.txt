@@ -1,0 +1,94 @@
+print("----- Online Market'e Hoşgeldiniz-----")
+userinfo = {'ahmet': 'İstinye123', 'meryem': '4444', 'eren': 'ern1903', 'esila': 'esl1907'}
+envanter = {'kuşkonmaz': [6, 3], 'brokoli': [20, 7], 'havuç': [15, 5], 'elmalar': [25, 15], 'muz': [19, 18], 'meyve': [23, 5], 'yumurta': [44, 4], 'karışık meyve suyu': [1, 19], 'balık çubukları': [27, 10], 'dondurma': [0, 4], 'elma suyu': [33, 8], 'portakal suyu': [32, 4], 'üzüm suyu': [21, 16]}
+
+basket = []
+print("Lütfen kullanıcı bilgilerinizi sağlayarak giriş yapınız.")
+
+def acc():
+    username = input("Kullanıcı adı: ")
+    password = input("Şifre: ")
+    if(username in userinfo.keys() and password in userinfo[username]):
+        print("Başarıyla giriş yapıldı!")
+    else:
+        print("Kullanıcı adınız ve / veya şifreniz hatalı, lütfen doğruluğundan emin olun.")
+        return acc()
+    print(f"Hoşgeldin {username}! Lütfen ilgili menü numarasını girerek aşağıdaki seçeneklerden birini seçin.")
+acc()
+
+
+def menu():
+    print("Lütfen aşağıdaki hizmetlerden birini seçin:\n1. Ürün ara\n2. Sepete git\n3. Satın al\n4. Oturum Kapat\n5. Çıkış yap\n(Ana menü için '0' giriniz.")
+    choice = int(input("Seçiminiz: "))
+    if(choice == 1):
+        search = input("Ne arıyorsunuz?(içecek / yiycek): ")
+        if search == 'içecek':
+           print("1. Karışık meyve suyu\n2. Elma suyu\n3. Portakal suyu\n4. Üzüm suyu")
+           fruit = int(input("İçecek seçiminizi numaralara göre seçiniz (1-4): "))
+           num = int(input("Adet giriniz: "))
+           if fruit == 1:
+               if num <= envanter['karışık meyve suyu'][1]:
+                   basket.append(envanter["karışık meyve suyu"] * num)
+               else:
+                    print("Lütfen stok miktarına göre seçim yapınız. Stok miktarı: " ,envanter['karışık meyve suyu'][1])
+                    return menu()
+           elif fruit == 2:
+               if num <= envanter['elma suyu'][1]:
+                   basket.append(envanter["elma suyu"] * num)
+               else:
+                    print("Lütfen stok miktarına göre seçim yapınız. Stok miktarı: ", envanter['elma suyu'][1])
+                    return menu()
+           elif fruit == 3:
+               if num <= envanter['portakal suyu'][1]:
+                   basket.append(envanter["portakal suyu"] * num)
+               else:
+                    print("Lütfen stok miktarına göre seçim yapınız. Stok miktarı: ", envanter['portakalsuyu'][1])
+                    return menu()
+           elif fruit == 4:
+               if num <= envanter['üzüm suyu'][1]:
+                   basket.append(envanter["üzüm suyu"] * num)
+               else:
+                   print("Lütfen stok miktarına göre seçim yapınız. Stok miktarı: ", envanter['üzüm suyu'][1])
+                   return menu()
+           else:
+               print("Lütfen doğru seçeneği girin!!")
+               return menu()
+        elif search == 'yiyecek':
+            print("1. Kuşkonmaz\n2. Brokoli\n3. Havuç\n4. Yumurta")
+            yiyecek = int(input("Yiyecek seçiminizi numaralara göre seçiniz (1-4): "))
+            numm = int(input("Adet giriniz: "))
+            if yiyecek == 1:
+                if numm <= envanter['kuşkonmaz'][1]:
+                    basket.append(envanter["kuşkonmaz"] * numm)
+                else:
+                    print("Lütfen stok miktarına göre seçim yapınız. Stok miktarı: ", envanter['kuşkonmaz'][1])
+                    return menu()
+            elif yiyecek == 2:
+                if numm <= envanter['brokoli'][1]:
+                    basket.append(envanter["brokoli"] * numm)
+                else:
+                    print("Lütfen stok miktarına göre seçim yapınız. Stok miktarı: ", envanter['brokoli'][1])
+                    return menu()
+            elif yiyecek == 3:
+                if numm <= envanter['havuç'][1]:
+                    basket.append(envanter["havuç"] * numm)
+                else:
+                    print("Lütfen stok miktarına göre seçim yapınız. Stok miktarı: ", envanter['havuç'][1])
+                    return menu()
+            elif yiyecek == 4:
+                if numm <= envanter['yumurta'][1]:
+                    basket.append(envanter["yumurta"] * numm)
+                else:
+                    print("Lütfen stok miktarına göre seçim yapınız. Stok miktarı: ", envanter['yumurta'][1])
+                    return menu()
+            print("Ürününüz sepete ekleniyor...")
+            req = str(input("Başka ürünlere bakmak ister misiniz? (e/h): "))
+            if req == 'e':
+                return menu()
+            
+
+
+
+
+
+menu()
